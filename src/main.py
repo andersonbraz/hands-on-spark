@@ -1,24 +1,8 @@
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as f
-
+from util.functions import drop_cols_duplicate
 
 spark = SparkSession.builder.appName("Hands on Spark").getOrCreate()
-
-def drop_cols_duplicate(df):
-    newcols = []
-    dupcols = []
-
-    for i in range(len(df.columns)):
-        if df.columns[i] not in newcols:
-            newcols.append(df.columns[i])
-        else:
-            dupcols.append(i)
-
-    df = df.toDF(*[str(i) for i in range(len(df.columns))])
-    for dupcol in dupcols:
-        df = df.drop(str(dupcol))
-
-    return df.toDF(*newcols)
 
 
 if __name__ == "__main__":
