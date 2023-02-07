@@ -7,21 +7,19 @@ from util.functions import (
 
 def run_my_example():
 
-    spark = (
-        SparkSession
-            .builder
-            .appName("Hands on Spark")
-            .config("fs.s3a.endpoint", "http://127.0.0.1:9001")
-            .config("fs.s3a.access.key", "z80bHqQLEGOjqqSy")
-            .config("fs.s3a.secret.key", "R74CnSAYhb4NB0xTLIjJ0cpkM6fZmIhm")
-            .config("fs.s3a.connection.timeout", "600000")
-            .config("spark.sql.debug.maxToStringFields", "100")
-            .config("fs.s3a.path.style.access", "true")
-            .config("fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem")
-            .config("fs.s3a.connection.ssl.enabled", "true")
-            .getOrCreate()
-    )
+    spark = SparkSession.builder.appName("Hands on Spark").getOrCreate()
     
+    spark.sparkContext.hadoopConfiguration.set("fs.s3a.endpoint", "http://127.0.0.1:900")
+    spark.sparkContext.hadoopConfiguration.set("fs.s3a.access.key", "z80bHqQLEGOjqqSy")
+    spark.sparkContext.hadoopConfiguration.set("fs.s3a.secret.key", "R74CnSAYhb4NB0xTLIjJ0cpkM6fZmIhm")
+    spark.sparkContext.hadoopConfiguration.set("fs.s3a.connection.timeout", "600000")
+    spark.sparkContext.hadoopConfiguration.set("spark.sql.debug.maxToStringFields", "100")
+    spark.sparkContext.hadoopConfiguration.set("fs.s3a.path.style.access", "true")
+    spark.sparkContext.hadoopConfiguration.set("fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem")
+    spark.sparkContext.hadoopConfiguration.set("fs.s3a.connection.ssl.enabled", "true")
+
+
+
     schema_alunos = "Id INT, Nome STRING, Documento STRING"
 
     df_alunos = spark.read.csv(
@@ -53,10 +51,6 @@ def run_my_example():
 
     df_final.printSchema()
     df_final.show()
-    
-    df_final.write.format("parquet").save("s3a://source-csv/relatorio.parquet")
-    
-    
 
 def run_test():
     lista = ["campo1","campo2"]
