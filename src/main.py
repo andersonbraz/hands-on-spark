@@ -1,15 +1,13 @@
 from pyspark.sql import SparkSession
-from pyspark.sql import functions as f
 from util.functions import (
-    drop_cols_duplicates, 
-    format_num_document, 
-    format_local_datetime
+    drop_cols_duplicates,
+    format_num_document,
+    format_local_datetime,
 )
 
-spark = SparkSession.builder.appName("Hands on Spark").getOrCreate()
+def run_my_example():
 
-
-if __name__ == "__main__":
+    spark = SparkSession.builder.appName("Hands on Spark").getOrCreate()
     schema_alunos = "Id INT, Nome STRING, Documento STRING"
 
     df_alunos = spark.read.csv(
@@ -37,6 +35,16 @@ if __name__ == "__main__":
     df_final = df_alunos.join(df_notas, df_alunos.Id == df_notas.Id, "inner")
     df_final = drop_cols_duplicates(df_final)
     df_final = format_num_document("Documento", df_final)
+    df_final = format_local_datetime(["Lancamento"], df_final)
 
     df_final.printSchema()
     df_final.show()
+
+def run_test():
+    lista = ["campo1","campo2"]
+    print(type(lista)) 
+
+
+if __name__ == "__main__":
+    run_my_example()
+    # run_test()
