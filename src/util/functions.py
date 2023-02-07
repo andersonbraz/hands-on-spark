@@ -30,7 +30,7 @@ def format_num_document(field_name: str, df: DataFrame):
     return df
 
 
-def format_local_datetime(columns, df: DataFrame):
+def format_local_datetime(columns: list, df: DataFrame):
     for column in columns:
         df = df.withColumn(
             column, 
