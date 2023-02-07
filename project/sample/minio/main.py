@@ -52,7 +52,7 @@ def run_my_example():
     df_final.printSchema()
     df_final.show()
 
-    df_final.write.format("parquet").save("s3a://source-csv/relatorio.parquet")
+    df_final.write.format("parquet").save("s3a://source-csv/processado")
 
 
 if __name__ == "__main__":
