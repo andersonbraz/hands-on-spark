@@ -1,4 +1,8 @@
-def drop_cols_duplicate(df):
+from pyspark.sql import DataFrame
+from pyspark.sql import functions as f
+
+
+def drop_cols_duplicates(df):
     newcols = []
     dupcols = []
 
@@ -13,3 +17,12 @@ def drop_cols_duplicate(df):
         df = df.drop(str(dupcol))
 
     return df.toDF(*newcols)
+
+
+def format_num_document(field_name: str, df: DataFrame):
+    df = df.withColumn(
+        field_name,
+        f.lpad(f.regexp_replace(f.col(field_name), "[^a-zA-Z0-9]", ""), 11, "0"),
+    )
+
+    return df
