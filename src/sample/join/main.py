@@ -5,8 +5,8 @@ from util.functions import (
     format_local_datetime,
 )
 
-def run_my_example():
 
+def run_my_example():
     spark = SparkSession.builder.appName("Hands on Spark").getOrCreate()
     schema_alunos = "Id INT, Nome STRING, Documento STRING"
 
@@ -40,11 +40,6 @@ def run_my_example():
     df_final.printSchema()
     df_final.show()
 
-def run_test():
-    lista = ["campo1","campo2"]
-    print(type(lista)) 
-
 
 if __name__ == "__main__":
     run_my_example()
-    # run_test()

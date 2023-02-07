@@ -32,8 +32,5 @@ def format_num_document(field_name: str, df: DataFrame):
 
 def format_local_datetime(columns: list, df: DataFrame):
     for column in columns:
-        df = df.withColumn(
-            column, 
-            f.from_utc_timestamp(f.col(column), LOCAL_TIMEZONE)
-        )
+        df = df.withColumn(column, f.from_utc_timestamp(f.col(column), LOCAL_TIMEZONE))
     return df
