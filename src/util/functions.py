@@ -2,7 +2,10 @@ from pyspark.sql import DataFrame
 from pyspark.sql import functions as f
 
 
-def drop_cols_duplicates(df):
+LOCAL_TIMEZONE = "America/Sao_Paulo"
+
+
+def drop_cols_duplicates(df: DataFrame):
     newcols = []
     dupcols = []
 
@@ -25,4 +28,10 @@ def format_num_document(field_name: str, df: DataFrame):
         f.lpad(f.regexp_replace(f.col(field_name), "[^a-zA-Z0-9]", ""), 11, "0"),
     )
 
+    return df
+
+
+def format_local_datetime(columns: list, df: DataFrame):
+    for column in columns:
+        df = df.withColumn(column, f.col(column), LOCAL_TIMEZONE)
     return df
