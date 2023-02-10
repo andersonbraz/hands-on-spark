@@ -1,3 +1,4 @@
+import os
 from pyspark.sql import SparkSession
 from project.util.functions import (
     drop_cols_duplicates,
@@ -5,13 +6,14 @@ from project.util.functions import (
     format_local_datetime,
 )
 
+PATH_PROJECT = os.getcwd()
 
 def run_my_example():
     spark = SparkSession.builder.appName("Hands on Spark").getOrCreate()
-    schema_alunos = "Id INT, Nome STRING, Documento STRING"
+    schema_alunos = "Id INT, Nome STRING, Documento STRING, Turma STRING"
 
     df_alunos = spark.read.csv(
-        "/Users/andersonbraz/Projects/hands-on-spark/src/data/alunos.csv",
+        f"{PATH_PROJECT}/project/data/alunos.csv",
         header=True,
         schema=schema_alunos,
         sep=";",
@@ -20,10 +22,10 @@ def run_my_example():
     df_alunos.printSchema()
     df_alunos.show()
 
-    schema_notas = "Id INT, Nota STRING, Materia STRING, Lancamento STRING"
+    schema_notas = "Id INT, Nota STRING, Materia STRING, Lancamento STRING, Turma STRING"
 
     df_notas = spark.read.csv(
-        "/Users/andersonbraz/Projects/hands-on-spark/src/data/notas.csv",
+        f"{PATH_PROJECT}/project/data/notas.csv",
         header=True,
         schema=schema_notas,
         sep=";",
