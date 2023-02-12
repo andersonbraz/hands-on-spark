@@ -1,3 +1,6 @@
 py4j
 pycodestyle
 black
+requests
+pandas
+sqlalchemy

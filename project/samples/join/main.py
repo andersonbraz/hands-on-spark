@@ -8,6 +8,7 @@ from project.util.functions import (
 
 PATH_PROJECT = os.getcwd()
 
+
 def run_my_example():
     spark = SparkSession.builder.appName("Hands on Spark").getOrCreate()
     schema_alunos = "Id INT, Nome STRING, Documento STRING, Turma STRING"
@@ -22,7 +23,9 @@ def run_my_example():
     df_alunos.printSchema()
     df_alunos.show()
 
-    schema_notas = "Id INT, Nota STRING, Materia STRING, Lancamento STRING, Turma STRING"
+    schema_notas = (
+        "Id INT, Nota STRING, Materia STRING, Lancamento STRING, Turma STRING"
+    )
 
     df_notas = spark.read.csv(
         f"{PATH_PROJECT}/project/data/notas.csv",
