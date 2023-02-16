@@ -9,7 +9,7 @@ from project.util.functions import (
 PATH_PROJECT = os.getcwd()
 
 
-def run_my_example():
+def run():
     spark = SparkSession.builder.appName("Hands on Spark").getOrCreate()
     schema_alunos = "Id INT, Nome STRING, Documento STRING, Turma STRING"
 
@@ -47,4 +47,4 @@ def run_my_example():
 
 
 if __name__ == "__main__":
-    run_my_example()
+    run()

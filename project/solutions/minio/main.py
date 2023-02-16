@@ -6,17 +6,17 @@ from project.util.functions import (
 )
 
 
-def run_my_example():
+def run():
     spark = (
         SparkSession.builder.appName("Hands on Spark")
-        .config("fs.s3a.endpoint", "http://127.0.0.1:9001")
-        .config("fs.s3a.access.key", "z80bHqQLEGOjqqSy")
-        .config("fs.s3a.secret.key", "R74CnSAYhb4NB0xTLIjJ0cpkM6fZmIhm")
+        .config("fs.s3a.endpoint", "http://127.0.0.1:9009")
+        .config("fs.s3a.access.key", "COvxtE1VmeOebKBR")
+        .config("fs.s3a.secret.key", "3Y5SHuDeTyU96HCchXySpZslLOcuqMTz")
         .config("fs.s3a.connection.timeout", "600000")
-        .config("spark.sql.debug.maxToStringFields", "100")
         .config("fs.s3a.path.style.access", "true")
         .config("fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem")
         .config("fs.s3a.connection.ssl.enabled", "true")
+        .config("spark.sql.debug.maxToStringFields", "100")
         .getOrCreate()
     )
 
@@ -56,4 +56,4 @@ def run_my_example():
 
 
 if __name__ == "__main__":
-    run_my_example()
+    run()
