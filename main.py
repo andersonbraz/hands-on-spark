@@ -10,7 +10,6 @@ def run():
     df = spark.read.json(f"{PATH_PROJECT}/project/data/clientes.json",
                          multiLine=True)
     my_schema = df.schema
-    
     df.printSchema()
     df.show(truncate=False)
     print(my_schema)
@@ -18,6 +17,3 @@ def run():
 
 if __name__ == "__main__":
     run()
-
-
-
