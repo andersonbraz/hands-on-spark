@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "name": "Anderson Braz de Sousa",
+        "birth_date": "1980-11-06T00:00:0-03:00",
+        "genre": "M",
+        "e-mail": "contato@andersonbraz.com",
+        "phone": "31994867417",
+        "code_origin": 61,
+        "tags": [
+            "development",
+            "java",
+            "python"
+        ]
+    }
+]
